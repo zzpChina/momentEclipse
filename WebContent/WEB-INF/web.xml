@@ -24,7 +24,6 @@
     <servlet-name>mood</servlet-name>
     <url-pattern>/mood</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>getHeadImg</servlet-name>
     <servlet-class>servlet.HeadImgServlet</servlet-class>
@@ -32,5 +31,14 @@
   <servlet-mapping>
     <servlet-name>getHeadImg</servlet-name>
     <url-pattern>/getHead</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>getMood</servlet-name>
+    <servlet-class>servlet.GetMoodServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getMood</servlet-name>
+    <url-pattern>/getMood</url-pattern>
   </servlet-mapping>
 </web-app>
