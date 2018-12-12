@@ -1,4 +1,6 @@
 package model;
+
+
 /**
  * ”√ªß¿‡
  * @author zzpComputer
@@ -59,4 +61,21 @@ public class User {
 	public void setMood(Mood mood) {
 		this.mood = mood;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(this.getUname()==((User)obj).getUname()) {
+			return true;
+		}
+		return false;
+	}
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((uname == null) ? 0 : uname.hashCode());
+		return result;
+	}
+
 }

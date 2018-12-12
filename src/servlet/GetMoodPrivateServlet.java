@@ -1,8 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -12,11 +10,13 @@ import dao.MoodDao;
 import dao.UserDao;
 import model.Mood;
 import model.User;
-
 /**
- * Servlet implementation class GetMoodServlet
+ * 私发动态处理
+ * @author zzpComputer
+ *
  */
-public class GetMoodServlet extends HttpServlet {
+public class GetMoodPrivateServlet extends HttpServlet{
+
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -34,38 +34,24 @@ public class GetMoodServlet extends HttpServlet {
 			Mood m=new Mood(user.getHeadImg(),user.getUname(),content);
 			String addMood=m.getMoodItem();
 			if(user!=null) {
-				String oldMood;
-				String newMood="";
-				if(!MoodDao.getGroupNum(uname).equals("")&&MoodDao.getGroupNum(uname)!=null) {
-					List<User> list=MoodDao.getUsersByGroup(MoodDao.getGroupNum(uname));
-					if(list!=null) {
-						for(User temp:list) {
-							String tempUname=temp.getUname();
-							oldMood=MoodDao.getMoods(tempUname);
-							newMood=addMood+"--"+oldMood;
-						}
-					}
-					boolean b=MoodDao.setMoods(uname,newMood,MoodDao.getGroupNum(uname));
-					if(b) {
-						resp.getWriter().write("yes");
-					}else {
-						resp.getWriter().write("no");
-					}
+				String oldMood=MoodDao.getMoods(uname);
+				String newMood=addMood+"--"+oldMood;
+				boolean b=MoodDao.setMoods(uname,newMood);
+				if(b) {
+					resp.getWriter().write("yes");
 				}else {
 					resp.getWriter().write("no");
 				}
 			}
+		}
 			
 		//响应处理结果
 			
 			//响应
 
-	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		super.doPost(req, resp);
 	}
-   
-	
 }
