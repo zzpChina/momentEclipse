@@ -35,7 +35,12 @@ public class GetMoodPrivateServlet extends HttpServlet{
 			String addMood=m.getMoodItem();
 			if(user!=null) {
 				String oldMood=MoodDao.getMoods(uname);
-				String newMood=addMood+"--"+oldMood;
+				String newMood;
+				if(oldMood==null) {
+					newMood=addMood;
+				}else {
+					newMood=addMood+"--"+oldMood;
+				}
 				boolean b=MoodDao.setMoods(uname,newMood);
 				if(b) {
 					resp.getWriter().write("yes");

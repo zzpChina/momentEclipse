@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.MoodDao;
+import model.Mood;
 
 /**
  * Servlet implementation class ReturnMoodServlet
@@ -24,12 +25,18 @@ public class ReturnMoodServlet extends HttpServlet {
 		resp.setContentType("text/html;charset=utf-8");
 		//获取请求数据
 		String uname=req.getParameter("uname");
+		System.out.println(uname);
 		//处理请求数据
 		String result=MoodDao.getMoods(uname);
+		if(result==null) {
+			resp.getWriter().write(new Mood("img/none","系统提示","您暂时没有动态").getMoodItem());
+			return;
+		}
+		System.out.println(result);
 //		String results[]=result.split("--");
 		//响应处理结果
 			//直接响应
-			resp.getWriter().write(result);
+		resp.getWriter().write(result);
 			//请求转发
 			//重定向
 	}

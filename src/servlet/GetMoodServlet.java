@@ -42,7 +42,11 @@ public class GetMoodServlet extends HttpServlet {
 						for(User temp:list) {
 							String tempUname=temp.getUname();
 							oldMood=MoodDao.getMoods(tempUname);
-							newMood=addMood+"--"+oldMood;
+							if(oldMood==null) {
+								newMood=addMood;
+							}else {
+								newMood=addMood+"--"+oldMood;
+							}
 						}
 					}
 					boolean b=MoodDao.setMoods(uname,newMood,MoodDao.getGroupNum(uname));
