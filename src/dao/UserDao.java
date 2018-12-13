@@ -82,6 +82,7 @@ public class UserDao {
 			ps.setString(4, sex);
 			int num=ps.executeUpdate();
 			if(num>0) {
+				System.out.println(uname);
 				MoodDao.setNewCoustomerMoods(uname);
 				return true;
 			}

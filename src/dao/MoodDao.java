@@ -69,7 +69,7 @@ public class MoodDao {
 			
 			try {
 				conn=DBCPUtils.getConn();
-				String sql="insert into usermood(uname,pyqMood) values(?,?,?)";
+				String sql="insert into usermood(uname,pyqMood,groupNum) values(?,?,?)";
 				ps=conn.prepareStatement(sql);
 				ps.setString(1, uname);
 				ps.setString(2, "");
@@ -165,5 +165,37 @@ public class MoodDao {
 			}
 			return "";
 		}
+		
+		public static boolean registerGroup(String uname,String groupNum) {
+			Connection conn=null;
+			PreparedStatement ps=null;
+			if((groupNum.equals(""))||(groupNum==null)) {
+				return false;
+			}
+			
+			try {
+				conn=DBCPUtils.getConn();
+				String sql="update usermood set groupNum=? where uname=?";
+				ps=conn.prepareStatement(sql);
+				ps.setString(1, groupNum);
+				ps.setString(2, uname);
+				
+				
+				int num=ps.executeUpdate();
+				if(num>0) {
+					return true;
+				}
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				DBCPUtils.closeAll(conn, ps);
+			}
+			return false;
+			
+			
+		}
+	
 
 }

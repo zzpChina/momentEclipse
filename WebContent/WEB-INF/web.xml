@@ -32,7 +32,6 @@
     <servlet-name>getHeadImg</servlet-name>
     <url-pattern>/getHead</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>getMood</servlet-name>
     <servlet-class>servlet.GetMoodPrivateServlet</servlet-class>
@@ -41,7 +40,6 @@
     <servlet-name>getMood</servlet-name>
     <url-pattern>/getMood</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>getMood2</servlet-name>
     <servlet-class>servlet.GetMoodServlet</servlet-class>
@@ -49,5 +47,14 @@
   <servlet-mapping>
     <servlet-name>getMood2</servlet-name>
     <url-pattern>/getMood2</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>getGroup</servlet-name>
+    <servlet-class>servlet.GetGroupServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>getGroup</servlet-name>
+    <url-pattern>/getGroup</url-pattern>
   </servlet-mapping>
 </web-app>
