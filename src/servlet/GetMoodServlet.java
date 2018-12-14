@@ -21,7 +21,7 @@ public class GetMoodServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+			System.out.println("群组请求");
 		//设置请求编码
 			req.setCharacterEncoding("utf-8");
 		//设置响应编码
@@ -31,38 +31,40 @@ public class GetMoodServlet extends HttpServlet {
 			String content=req.getParameter("content");
 		//处理请求数据
 			User user=UserDao.findUserByUname(uname);
-			Mood m=new Mood(user.getHeadImg(),user.getUname(),content);
-			String addMood=m.getMoodItem();
+			
 			if(user!=null) {
-				String oldMood;
-				String newMood="";
+				Mood m=new Mood(user.getHeadImg(),user.getUname(),content);
+				String addMood=m.getMoodItem();
 				if(!MoodDao.getGroupNum(uname).equals("")&&MoodDao.getGroupNum(uname)!=null) {
 					List<User> list=MoodDao.getUsersByGroup(MoodDao.getGroupNum(uname));
 					if(list!=null) {
 						for(User temp:list) {
+							String newMood="";
 							String tempUname=temp.getUname();
-							oldMood=MoodDao.getMoods(tempUname);
-							if(oldMood==null) {
+							String oldMood=MoodDao.getMoods(tempUname);
+							if(oldMood==null||oldMood.equals("")) {
 								newMood=addMood;
+								boolean b=MoodDao.setMoods(tempUname,newMood);
+								if(b) {
+									resp.getWriter().write("yes");
+								}else {
+									resp.getWriter().write("no");
+								}
 							}else {
 								newMood=addMood+"--"+oldMood;
+								boolean b=MoodDao.setMoods(tempUname,newMood);
+								if(b) {
+									resp.getWriter().write("yes");
+								}else {
+									resp.getWriter().write("no");
+								}
 							}
 						}
-					}
-					boolean b=MoodDao.setMoods(uname,newMood,MoodDao.getGroupNum(uname));
-					if(b) {
-						resp.getWriter().write("yes");
-					}else {
-						resp.getWriter().write("no");
 					}
 				}else {
 					resp.getWriter().write("no");
 				}
 			}
-			
-		//响应处理结果
-			
-			//响应
 
 	}
 

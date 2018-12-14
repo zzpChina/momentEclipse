@@ -38,6 +38,30 @@ public class MoodDao {
 		}
 		return "";
 	}
+	public static List<User> getAllUsers(){
+		Connection conn=null;
+		PreparedStatement ps=null;
+		ResultSet rs=null;
+		List<User> list=new ArrayList<>();
+		
+		try {
+			conn=DBCPUtils.getConn();
+			String sql="select uname from usermood";
+			ps=conn.prepareStatement(sql);
+			rs=ps.executeQuery();
+			while(rs.next()) {
+				list.add(UserDao.findUserByUname(rs.getString("uname")));
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBCPUtils.closeAll(conn,ps,rs);
+		}
+		return list;
+		
+	}
+	
 	//通过群组获取
 	public static List<User> getUsersByGroup(String groupNum) {
 		Connection conn=null;
@@ -117,6 +141,32 @@ public class MoodDao {
 			}
 			return false;
 		}
+		
+		//修改全部动态
+		public static boolean setMoodAll(String newMood) {
+			Connection conn=null;
+			PreparedStatement ps=null;
+			
+			
+			try {
+				conn=DBCPUtils.getConn();
+				String sql="update usermood set pyqMood=? where uname is not null";
+				ps=conn.prepareStatement(sql);
+				
+				int num=ps.executeUpdate();
+				if(num>0) {
+					return true;
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return false;
+			
+			
+		}
+		
+		
 		
 		//群组修改动态
 		public static boolean setMoods(String uname,String newMoods,String groupNum) {
