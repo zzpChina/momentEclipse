@@ -11,7 +11,7 @@ import dao.UserDao;
 import model.User;
 
 /**
- * Servlet implementation class HeadImgServlet
+ * ·µ»ØÍ·ÏñURL
  */
 
 public class HeadImgServlet extends HttpServlet {

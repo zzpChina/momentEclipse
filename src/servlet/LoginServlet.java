@@ -10,14 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import dao.UserDao;
 import model.User;
 /**
- * 判断用户登录
+ * 判断用户登录处理
  */
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("---接收请求---");
 		//设置请求编码
 			req.setCharacterEncoding("utf-8");
 		//设置响应编码

@@ -11,7 +11,7 @@ import dao.UserDao;
 import model.Mood;
 import model.User;
 /**
- * 私发动态处理
+ * 仅自己可见动态处理
  * @author zzpComputer
  *
  */
@@ -21,7 +21,6 @@ public class GetMoodPrivateServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("个人动态");
 		//设置请求编码
 			req.setCharacterEncoding("utf-8");
 		//设置响应编码
@@ -51,11 +50,7 @@ public class GetMoodPrivateServlet extends HttpServlet{
 				}
 			}
 		}
-			
-		//响应处理结果
-			
-			//响应
-
+	
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

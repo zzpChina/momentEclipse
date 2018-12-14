@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import dao.MoodDao;
 
 /**
- * Servlet implementation class GetGroupServlet
+ * 选择群组处理
  */
 
 public class GetGroupServlet extends HttpServlet {

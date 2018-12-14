@@ -11,7 +11,7 @@ import dao.MoodDao;
 import model.Mood;
 
 /**
- * Servlet implementation class ReturnMoodServlet
+ * 传回朋友圈动态处理
  */
 
 public class ReturnMoodServlet extends HttpServlet {
@@ -28,7 +28,7 @@ public class ReturnMoodServlet extends HttpServlet {
 		System.out.println(uname);
 		//处理请求数据
 		String result=MoodDao.getMoods(uname);
-		if(result==null) {
+		if(result==null||result.equals("")) {
 			resp.getWriter().write(new Mood("img/none","系统提示","您暂时没有动态").getMoodItem());
 			return;
 		}

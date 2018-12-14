@@ -14,14 +14,13 @@ import model.Mood;
 import model.User;
 
 /**
- * Servlet implementation class GetMoodPublicServlet
+ * 所有人可见动态处理
  */
 public class GetMoodPublicServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("公共请求");
 		//设置请求编码
 		req.setCharacterEncoding("utf-8");
 	//设置响应编码

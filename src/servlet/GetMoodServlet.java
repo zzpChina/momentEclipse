@@ -14,14 +14,13 @@ import model.Mood;
 import model.User;
 
 /**
- * Servlet implementation class GetMoodServlet
+ * 群组动态处理
  */
 public class GetMoodServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			System.out.println("群组请求");
 		//设置请求编码
 			req.setCharacterEncoding("utf-8");
 		//设置响应编码

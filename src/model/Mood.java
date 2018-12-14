@@ -1,6 +1,6 @@
 package model;
 /**
- * 朋友圈类
+ * 朋友圈Item
  *  {"id":1,"image":"img/xl.jpg","num":0,"price":"￥1230.00","title":"复古夸张贝壳拼接幸运树圆形吊坠长款项链"}
  * @author zzpComputer
  *
@@ -42,6 +42,10 @@ public class Mood {
 	public void setMood(String mood) {
 		this.mood = mood;
 	}
+	/**
+	 * JSON字符串格式
+	 * @return
+	 */
 	public String getMoodItem() {
 		return "{\"headImg\":\""+this.getHeadImg()+"\",\"uname\":\""+this.getUname()+"\",\"mood\":\""+this.getMood()+"\"}";
 	}
