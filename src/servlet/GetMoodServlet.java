@@ -36,6 +36,8 @@ public class GetMoodServlet extends HttpServlet {
 				String addMood=m.getMoodItem();
 				if(!MoodDao.getGroupNum(uname).equals("")&&MoodDao.getGroupNum(uname)!=null) {
 					List<User> list=MoodDao.getUsersByGroup(MoodDao.getGroupNum(uname));
+					System.out.println("用户总数:"+list.size());
+					boolean b=false;
 					if(list!=null) {
 						for(User temp:list) {
 							String newMood="";
@@ -43,25 +45,23 @@ public class GetMoodServlet extends HttpServlet {
 							String oldMood=MoodDao.getMoods(tempUname);
 							if(oldMood==null||oldMood.equals("")) {
 								newMood=addMood;
-								boolean b=MoodDao.setMoods(tempUname,newMood);
-								if(b) {
-									resp.getWriter().write("yes");
-								}else {
-									resp.getWriter().write("no");
-								}
+								 b=MoodDao.setMoods(tempUname,newMood);
 							}else {
 								newMood=addMood+"--"+oldMood;
-								boolean b=MoodDao.setMoods(tempUname,newMood);
-								if(b) {
-									resp.getWriter().write("yes");
-								}else {
-									resp.getWriter().write("no");
-								}
+								 b=MoodDao.setMoods(tempUname,newMood);
 							}
+						}
+						if(b) {
+							resp.getWriter().write("yes");
+							return;
+						}else {
+							resp.getWriter().write("no");
+							return;
 						}
 					}
 				}else {
 					resp.getWriter().write("no");
+					return;
 				}
 			}
 

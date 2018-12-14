@@ -40,7 +40,6 @@
     <servlet-name>getMood</servlet-name>
     <url-pattern>/getMood</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>getMoodPub</servlet-name>
     <servlet-class>servlet.GetMoodPublicServlet</servlet-class>
@@ -64,5 +63,14 @@
   <servlet-mapping>
     <servlet-name>getGroup</servlet-name>
     <url-pattern>/getGroup</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>forward</servlet-name>
+    <servlet-class>servlet.ForWardServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>forward</servlet-name>
+    <url-pattern>/forward</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -28,6 +28,7 @@ public class GetMoodPublicServlet extends HttpServlet {
 	//获取请求数据
 		String uname=req.getParameter("uname");
 		String content=req.getParameter("content");
+		System.out.println(uname+content);
 	//处理请求数据
 		
 		User user=UserDao.findUserByUname(uname);
@@ -36,6 +37,7 @@ public class GetMoodPublicServlet extends HttpServlet {
 			String addMood=m.getMoodItem();
 			List<User> list=MoodDao.getAllUsers();
 			System.out.println("用户总数:"+list.size());
+			boolean b=false;
 			if(list!=null) {
 				for(User temp:list) {
 					String newMood="";
@@ -43,26 +45,24 @@ public class GetMoodPublicServlet extends HttpServlet {
 					String oldMood=MoodDao.getMoods(tempUname);
 					if(oldMood==null||oldMood.equals("")) {
 						newMood=addMood;
-						boolean b=MoodDao.setMoods(tempUname,newMood);
-						if(b) {
-							resp.getWriter().write("yes");
-						}else {
-							resp.getWriter().write("no");
-						}
+						 b=MoodDao.setMoods(tempUname,newMood);
 					}else {
 						newMood=addMood+"--"+oldMood;
-						boolean b=MoodDao.setMoods(tempUname,newMood);
-						if(b) {
-							resp.getWriter().write("yes");
-						}else {
-							resp.getWriter().write("no");
-						}
+						 b=MoodDao.setMoods(tempUname,newMood);
 					}
+				}
+				if(b) {
+					resp.getWriter().write("yes");
+					return;
+				}else {
+					resp.getWriter().write("no");
+					return;
 				}
 			}
 			
 		}else {
 			resp.getWriter().write("no");
+			return;
 		}
 	}
        
