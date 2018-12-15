@@ -29,7 +29,7 @@ public class ReturnMoodServlet extends HttpServlet {
 		//处理请求数据
 		String result=MoodDao.getMoods(uname);
 		if(result==null||result.equals("")) {
-			resp.getWriter().write(new Mood("img/none","系统提示","您暂时没有动态").getMoodItem());
+			resp.getWriter().write(new Mood("img/system.png","系统提示","您暂时没有动态","img/system.png").getMoodItem());
 			return;
 		}
 		System.out.println(result);

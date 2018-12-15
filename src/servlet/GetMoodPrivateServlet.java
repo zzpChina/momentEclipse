@@ -21,6 +21,7 @@ public class GetMoodPrivateServlet extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("私有");
 		//设置请求编码
 			req.setCharacterEncoding("utf-8");
 		//设置响应编码
@@ -28,12 +29,13 @@ public class GetMoodPrivateServlet extends HttpServlet{
 		//获取请求数据
 			String uname=req.getParameter("uname");
 			String content=req.getParameter("content");
+			String moodImg=req.getParameter("moodImgUrl");
 		//处理请求数据
 			User user=UserDao.findUserByUname(uname);
 			
 			if(user!=null) {
 				
-				Mood m=new Mood(user.getHeadImg(),user.getUname(),content);
+				Mood m=new Mood(user.getHeadImg(),user.getUname(),content,moodImg);
 				String addMood=m.getMoodItem();
 				String oldMood=MoodDao.getMoods(uname);
 				String newMood;

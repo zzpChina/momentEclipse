@@ -28,11 +28,14 @@ public class GetMoodServlet extends HttpServlet {
 		//获取请求数据
 			String uname=req.getParameter("uname");
 			String content=req.getParameter("content");
+			String moodImg=req.getParameter("moodImgUrl");
+			System.out.println(moodImg);
+			System.out.println("群组");
 		//处理请求数据
 			User user=UserDao.findUserByUname(uname);
 			
 			if(user!=null) {
-				Mood m=new Mood(user.getHeadImg(),user.getUname(),content);
+				Mood m=new Mood(user.getHeadImg(),user.getUname(),content,moodImg);
 				String addMood=m.getMoodItem();
 				if(!MoodDao.getGroupNum(uname).equals("")&&MoodDao.getGroupNum(uname)!=null) {
 					List<User> list=MoodDao.getUsersByGroup(MoodDao.getGroupNum(uname));

@@ -9,13 +9,17 @@ public class Mood {
 	private String headImg;
 	private String uname;
 	private String mood;
-	public Mood(String headImg, String uname, String mood) {
+	private String moodImg;
+	
+	
+	public Mood(String headImg, String uname, String mood, String moodImg) {
 		super();
 		this.headImg = headImg;
 		this.uname = uname;
 		this.mood = mood;
+		this.moodImg = moodImg;
 	}
-	
+
 	public Mood() {
 	}
 
@@ -29,6 +33,14 @@ public class Mood {
 
 	public String getUname() {
 		return uname;
+	}
+
+	public String getMoodImg() {
+		return moodImg;
+	}
+
+	public void setMoodImg(String moodImg) {
+		this.moodImg = moodImg;
 	}
 
 	public void setUname(String uname) {
@@ -47,7 +59,9 @@ public class Mood {
 	 * @return
 	 */
 	public String getMoodItem() {
-		return "{\"headImg\":\""+this.getHeadImg()+"\",\"uname\":\""+this.getUname()+"\",\"mood\":\""+this.getMood()+"\"}";
+		return "{\"headImg\":\""+this.getHeadImg()+"\",\"uname\":\""+
+	this.getUname()+"\",\"mood\":\""+this.getMood()+"\",\"moodImg\":\""+this.getMoodImg()+"\"}";
 	}
+	
 	
 }
