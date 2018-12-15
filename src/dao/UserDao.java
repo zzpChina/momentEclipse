@@ -96,5 +96,34 @@ public class UserDao {
 		return false;
 		
 	}
+	/**
+	 * ÐÞ¸ÄÓÃ»§ÃÜÂë
+	 * @param uname
+	 * @param newPassword
+	 * @return
+	 */
+	public static boolean updateUser(String uname,String newPassword) {
+		Connection conn=null;
+		PreparedStatement ps=null;
+		
+		try {
+			conn=DBCPUtils.getConn();
+			String sql="update user set password=? where uname=?";
+			ps=conn.prepareStatement(sql);
+			ps.setString(1, newPassword);
+			ps.setString(2, uname);
+			int num=ps.executeUpdate();
+			if(num>0) {
+				return true;
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			DBCPUtils.closeAll(conn, ps);
+		}
+		return false;
+		
+	}
 
 }

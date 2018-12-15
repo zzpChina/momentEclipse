@@ -64,7 +64,6 @@
     <servlet-name>getGroup</servlet-name>
     <url-pattern>/getGroup</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>forward</servlet-name>
     <servlet-class>servlet.ForWardServlet</servlet-class>
@@ -72,5 +71,14 @@
   <servlet-mapping>
     <servlet-name>forward</servlet-name>
     <url-pattern>/forward</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>update</servlet-name>
+    <servlet-class>servlet.UpdateServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>update</servlet-name>
+    <url-pattern>/update</url-pattern>
   </servlet-mapping>
 </web-app>
