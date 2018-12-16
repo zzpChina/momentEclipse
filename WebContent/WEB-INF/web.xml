@@ -81,4 +81,15 @@
     <servlet-name>update</servlet-name>
     <url-pattern>/update</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>headUrl</servlet-name>
+    <servlet-class>servlet.ReturnHeadUrl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>headUrl</servlet-name>
+    <url-pattern>/headUrl</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
