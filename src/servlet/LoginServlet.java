@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.UserDao;
 import model.User;
+
 /**
  * 判断用户登录处理
  */
@@ -17,31 +18,27 @@ public class LoginServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//设置请求编码
-			req.setCharacterEncoding("utf-8");
-		//设置响应编码
-			resp.setContentType("text/html;charset=utf-8");
-		//获取请求结果
-			//获取用户名
-			String uname=req.getParameter("uname");
-			String pwd=req.getParameter("pwd");
-			User user=UserDao.findUserByUnameAndPassword(uname, pwd);
-			if(user!=null) {
-				//直接响应
-				System.out.println("后台:登录成功");
-				resp.getWriter().write("yes");
-			}else {
-				resp.getWriter().write("no");
-				System.out.println("后台:登录失败");
-			}
-		
+		// 设置请求编码
+		req.setCharacterEncoding("utf-8");
+		// 设置响应编码
+		resp.setContentType("text/html;charset=utf-8");
+		// 获取请求结果
+		// 获取用户名
+		String uname = req.getParameter("uname");
+		String pwd = req.getParameter("pwd");
+		User user = UserDao.findUserByUnameAndPassword(uname, pwd);
+		if (user != null) {
+			// 直接响应
+			resp.getWriter().write("yes");
+		} else {
+			resp.getWriter().write("no");
+		}
+
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 	}
-	
-	
-	
+
 }

@@ -1,8 +1,8 @@
 package model;
 
-
 /**
  * ”√ªß¿‡
+ * 
  * @author zzpComputer
  *
  */
@@ -12,11 +12,12 @@ public class User {
 	private String password;
 	private String sex;
 	private Mood mood;
+
 	public User() {
 	}
 
-	public User(String headImg,String uname, String password, String sex) {
-		this.headImg=headImg;
+	public User(String headImg, String uname, String password, String sex) {
+		this.headImg = headImg;
 		this.uname = uname;
 		this.password = password;
 		this.sex = sex;
@@ -64,12 +65,12 @@ public class User {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(this.getUname()==((User)obj).getUname()) {
+		if (this.getUname() == ((User) obj).getUname()) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

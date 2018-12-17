@@ -21,52 +21,49 @@ public class GetMoodServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//设置请求编码
-			req.setCharacterEncoding("utf-8");
-		//设置响应编码
-			resp.setContentType("text/html;charset=utf-8");
-		//获取请求数据
-			String uname=req.getParameter("uname");
-			String content=req.getParameter("content");
-			String moodImg=req.getParameter("moodImgUrl");
-			System.out.println(moodImg);
-			System.out.println("群组");
-		//处理请求数据
-			User user=UserDao.findUserByUname(uname);
-			
-			if(user!=null) {
-				Mood m=new Mood(user.getHeadImg(),user.getUname(),content,moodImg);
-				String addMood=m.getMoodItem();
-				if(!MoodDao.getGroupNum(uname).equals("")&&MoodDao.getGroupNum(uname)!=null) {
-					List<User> list=MoodDao.getUsersByGroup(MoodDao.getGroupNum(uname));
-					System.out.println("用户总数:"+list.size());
-					boolean b=false;
-					if(list!=null) {
-						for(User temp:list) {
-							String newMood="";
-							String tempUname=temp.getUname();
-							String oldMood=MoodDao.getMoods(tempUname);
-							if(oldMood==null||oldMood.equals("")) {
-								newMood=addMood;
-								 b=MoodDao.setMoods(tempUname,newMood);
-							}else {
-								newMood=addMood+"--"+oldMood;
-								 b=MoodDao.setMoods(tempUname,newMood);
-							}
-						}
-						if(b) {
-							resp.getWriter().write("yes");
-							return;
-						}else {
-							resp.getWriter().write("no");
-							return;
+		// 设置请求编码
+		req.setCharacterEncoding("utf-8");
+		// 设置响应编码
+		resp.setContentType("text/html;charset=utf-8");
+		// 获取请求数据
+		String uname = req.getParameter("uname");
+		String content = req.getParameter("content");
+		String moodImg = req.getParameter("moodImgUrl");
+		// 处理请求数据
+		User user = UserDao.findUserByUname(uname);
+
+		if (user != null) {
+			Mood m = new Mood(user.getHeadImg(), user.getUname(), content, moodImg);
+			String addMood = m.getMoodItem();
+			if (!MoodDao.getGroupNum(uname).equals("") && MoodDao.getGroupNum(uname) != null) {
+				List<User> list = MoodDao.getUsersByGroup(MoodDao.getGroupNum(uname));
+				boolean b = false;
+				if (list != null) {
+					for (User temp : list) {
+						String newMood = "";
+						String tempUname = temp.getUname();
+						String oldMood = MoodDao.getMoods(tempUname);
+						if (oldMood == null || oldMood.equals("")) {
+							newMood = addMood;
+							b = MoodDao.setMoods(tempUname, newMood);
+						} else {
+							newMood = addMood + "--" + oldMood;
+							b = MoodDao.setMoods(tempUname, newMood);
 						}
 					}
-				}else {
-					resp.getWriter().write("no");
-					return;
+					if (b) {
+						resp.getWriter().write("yes");
+						return;
+					} else {
+						resp.getWriter().write("no");
+						return;
+					}
 				}
+			} else {
+				resp.getWriter().write("no");
+				return;
 			}
+		}
 
 	}
 
@@ -74,6 +71,5 @@ public class GetMoodServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		super.doPost(req, resp);
 	}
-   
-	
+
 }

@@ -18,23 +18,22 @@ public class GetGroupServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//…Ë÷√«Î«Û±‡¬Î
+		// …Ë÷√«Î«Û±‡¬Î
 		req.setCharacterEncoding("utf-8");
-		//…Ë÷√œÏ”¶±‡¬Î
+		// …Ë÷√œÏ”¶±‡¬Î
 		resp.setContentType("text/html;charset=utf-8");
-		
-		String uname=req.getParameter("uname");
-		String groupNum=req.getParameter("groupNum");
-		
-		boolean b=MoodDao.registerGroup(uname, groupNum);
-		
-		if(b) {
+
+		String uname = req.getParameter("uname");
+		String groupNum = req.getParameter("groupNum");
+
+		boolean b = MoodDao.registerGroup(uname, groupNum);
+
+		if (b) {
 			resp.getWriter().write("yes");
-		}else {
+		} else {
 			resp.getWriter().write("no");
 		}
-		
-		
+
 	}
 
 	@Override
@@ -42,6 +41,5 @@ public class GetGroupServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.doPost(req, resp);
 	}
-   
 
 }

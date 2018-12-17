@@ -15,26 +15,24 @@ import model.User;
  * @author zzpComputer
  *
  */
-public class ReturnHeadUrl extends HttpServlet{
+public class ReturnHeadUrl extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		req.setCharacterEncoding("utf-8");
 		resp.setContentType("type/html;charset=utf-8");
-		String  uname=req.getParameter("uname");
-		
-		User user=UserDao.findUserByUname(uname);
-		if(user!=null) {
+		String uname = req.getParameter("uname");
+
+		User user = UserDao.findUserByUname(uname);
+		if (user != null) {
 			resp.getWriter().write(user.getHeadImg());
-		}else {
+		} else {
 			resp.getWriter().write("img/anoymous.png");
 		}
-		
+
 	}
-	
-	
 
 }

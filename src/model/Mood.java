@@ -1,7 +1,8 @@
 package model;
+
 /**
  * ÅóÓÑÈ¦Item
- *  {"id":1,"image":"img/xl.jpg","num":0,"price":"£¤1230.00","title":"¸´¹Å¿äÕÅ±´¿ÇÆ´½ÓÐÒÔËÊ÷Ô²ÐÎµõ×¹³¤¿îÏîÁ´"}
+ * 
  * @author zzpComputer
  *
  */
@@ -10,8 +11,7 @@ public class Mood {
 	private String uname;
 	private String mood;
 	private String moodImg;
-	
-	
+
 	public Mood(String headImg, String uname, String mood, String moodImg) {
 		super();
 		this.headImg = headImg;
@@ -54,14 +54,15 @@ public class Mood {
 	public void setMood(String mood) {
 		this.mood = mood;
 	}
+
 	/**
 	 * JSON×Ö·û´®¸ñÊ½
+	 * 
 	 * @return
 	 */
 	public String getMoodItem() {
-		return "{\"headImg\":\""+this.getHeadImg()+"\",\"uname\":\""+
-	this.getUname()+"\",\"mood\":\""+this.getMood()+"\",\"moodImg\":\""+this.getMoodImg()+"\"}";
+		return "{\"headImg\":\"" + this.getHeadImg() + "\",\"uname\":\"" + this.getUname() + "\",\"mood\":\""
+				+ this.getMood() + "\",\"moodImg\":\"" + this.getMoodImg() + "\"}";
 	}
-	
-	
+
 }
